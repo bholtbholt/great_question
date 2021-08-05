@@ -1,4 +1,6 @@
 class Incentive < ApplicationRecord
+  validates :code, uniqueness: true
+
   scope :redeemed, ->  { where(redeemed: true ) }
   scope :available, -> { where(redeemed: false) }
 

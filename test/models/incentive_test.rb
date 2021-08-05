@@ -14,6 +14,10 @@ class IncentiveTest < ActiveSupport::TestCase
     assert_equal [@redeemed_incentive], Incentive.redeemed
   end
 
+  test 'should require codes to be unique' do
+    refute build(:incentive, code: @available_incentive.code).valid?
+  end
+
   describe '.NullIncentive' do
     test '#update should return false' do
       refute Incentive::Null.update(anything: false)

@@ -1,7 +1,6 @@
 class Api::IncentivesController < ApplicationController
-
   def index
-    @incentives = Incentive.all
+    @incentives = Incentive.order(redeemed: :asc, updated_at: :desc)
     
     render json: @incentives.to_json
   end

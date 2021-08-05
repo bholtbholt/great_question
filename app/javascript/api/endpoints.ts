@@ -18,6 +18,22 @@ export const updateIncentive = async (id: number, params: Partial<Incentive>): P
   return null;
 };
 
+interface createIncentiveResponse {
+  message: string;
+  incentive?: Incentive;
+}
+export const createIncentive = async (
+  params: Partial<Incentive>,
+): Promise<createIncentiveResponse> => {
+  const resp = await fetch('/api/incentives', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(params),
+  });
+
+  return await resp.json();
+};
+
 interface redeemIncentivesResponse {
   message: string;
   errors: boolean;

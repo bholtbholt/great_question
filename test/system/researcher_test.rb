@@ -10,6 +10,16 @@ class ResearcherTest < ApplicationSystemTestCase
     it 'should_show_the_current_coupon' do
       visit '/setup'
       assert_equal 'COUPON_123', find_field('incentive_code').value
+  describe 'creating incentives' do
+    it 'should create a new incentive' do
+      visit '/setup'
+      fill_in 'incentive[code]', with: 'NEW_CODE'
+      click_on 'Add'
+      assert_text 'New incentive added'
+
+      within '#incentives-list' do
+        assert has_content? 'NEW_CODE'
+      end
     end
   end
 
